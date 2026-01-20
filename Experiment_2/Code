@@ -1,1 +1,49 @@
+# ----------------------------------------
+# Load Required Libraries
+# ----------------------------------------
+library(ggplot2)
+library(dplyr)
+
+# ----------------------------------------
+# Load Dataset
+# ----------------------------------------
+df <- read.csv("2.ecommerce_transactions.csv")
+
+# ----------------------------------------
+# 1️⃣ Histogram of Transaction Amounts
+# ----------------------------------------
+ggplot(df, aes(x = Transaction_Amount)) +
+  geom_histogram(bins = 30, fill = "skyblue", color = "black") +
+  ggtitle("Histogram of Transaction Amounts") +
+  xlab("Transaction Amount") +
+  ylab("Frequency")
+
+# ----------------------------------------
+# 2️⃣ Boxplot to Detect Outliers
+# ----------------------------------------
+ggplot(df, aes(y = Transaction_Amount)) +
+  geom_boxplot(fill = "lightgreen") +
+  ggtitle("Boxplot of Transaction Amounts") +
+  ylab("Transaction Amount")
+
+# ----------------------------------------
+# 3️⃣ Create Month Column for Heatmap
+# ----------------------------------------
+df$Month <- format(as.Date(df$Transaction_Date), "%Y-%m")
+
+# ----------------------------------------
+# 4️⃣ Group Monthly Sales by Month & Category
+# ----------------------------------------
+monthly_sales <- df %>%
+  group_by(Month, Product_Category) %>%
+  summarise(Total_Sales = sum(Transaction_Amount), .groups = "drop")
+
+# ----------------------------------------
+# 5️⃣ Heatmap of Monthly Sales Intensity
+# ----------------------------------------
+ggplot(monthly_sales, aes(x = Month, y = Product_Category, fill = Total_Sales)) +
+  geom_tile() +
+  ggtitle("Heatmap of Monthly Sales Intensity") +
+  xlab("Month") +
+  ylab("Product Category")
 
