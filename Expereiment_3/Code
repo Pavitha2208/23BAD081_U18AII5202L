@@ -1,1 +1,81 @@
+library(GGally)
 
+
+ggpairs(
+
+healthcare_data,
+
+columns = c("Age", "BMI", "Glucose_Level", "Blood_Pressure"),
+
+title = "Scatter Plot Matrix of Health Indicators\nRoll No: 23BAD081"
+
+)
+healthcare_data$AgeGroup <- cut(
+
+healthcare_data$Age,
+
+breaks = c(0, 30, 45, 60, 100),
+
+labels = c("Young", "Middle", "Senior", "Elderly")
+
+)
+
+
+library(ggplot2)
+
+
+ggplot(healthcare_data, aes(x = Age, y = BMI, color = AgeGroup)) +
+
+geom_point(size = 3) +
+
+labs(
+
+title = "Age vs BMI with Age Group Color Encoding",
+
+subtitle = "Roll No: 23BAD081",
+
+x = "Age",
+
+y = "BMI"
+
+) +
+
+theme_minimal()
+ggplot(healthcare_data, aes(x = BMI, y = Glucose_Level)) +
+
+geom_point(color = "blue", size = 3) +
+
+geom_smooth(method = "lm", se = FALSE, color = "red") +
+
+labs(
+
+title = "BMI vs Glucose Level",
+
+subtitle = "Roll No: 23BAD081",
+
+x = "BMI",
+
+y = "Glucose Level"
+
+) +
+
+theme_minimal()
+ggplot(healthcare_data, aes(x = Age, y = Blood_Pressure)) +
+
+geom_point(color = "darkgreen", size = 3) +
+
+geom_smooth(method = "lm", se = FALSE, color = "black") +
+
+labs(
+
+title = "Age vs Blood Pressure",
+
+subtitle = "Roll No: 23BAD081",
+
+x = "Age",
+
+y = "Blood Pressure"
+
+) +
+
+theme_minimal()
