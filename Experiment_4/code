@@ -1,0 +1,26 @@
+library(ggplot2)
+
+ggplot(traffic_data, aes(x = Location, y = Severity, color = Severity)) +
+  geom_jitter(width = 0.2, size = 3) +
+  labs(
+    title = "Accident Severity Across Locations",
+    subtitle = "Roll No: 23BAD081",
+    x = "Location",
+    y = "Severity Level"
+  ) +
+  theme_minimal()
+traffic_data$Severity_Num <- as.numeric(
+  factor(traffic_data$Severity,
+         levels = c("Minor", "Major", "Fatal"))
+)
+ggplot(traffic_data, aes(x = Location, y = Severity_Num, color = Severity_Num)) +
+  geom_jitter(width = 0.2, size = 3) +
+  scale_color_gradient(low = "yellow", high = "red") +
+  labs(
+    title = "Accident Severity Gradient Across Locations",
+    subtitle = "Roll No: 23BAD081",
+    x = "Location",
+    y = "Severity (Encoded)",
+    color = "Severity Level"
+  ) +
+  theme_minimal()
