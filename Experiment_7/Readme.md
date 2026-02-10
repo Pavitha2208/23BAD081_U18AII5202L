@@ -1,79 +1,88 @@
-# Lab Report: Reducing Visual Clutter in Large-Scale Datasets
+📊 Social Media Engagement Analysis – Data Visualization (R Studio)
+📌 Overview
 
-**Name:** Pavitha A  
-**Roll No:** 23BAD081  
+This project analyzes social media engagement patterns across different platforms and post types using R Studio. The goal is to understand how user interactions such as likes, shares, comments, and engagement scores vary based on platform and content type through effective data visualization.
 
-## Objective
-To apply visualization techniques that reduce visual clutter in large-scale datasets, making patterns easier to identify and analyze.
+📂 Dataset Description
 
-## Scenario
-A social media analytics company visualizes millions of user interactions to study engagement patterns. The dataset contains features such as Likes, Comments, Shares, Post Type, Platform, and Engagement Score.
+The dataset contains social media interaction data with the following attributes:
 
-## Techniques Applied
-1. **Alpha Blending**  
-   - Reduced point opacity to handle overplotting.  
-   - Dense areas appear darker, revealing patterns while preserving individual points.
+Platform – Facebook, Instagram, Twitter
 
-2. **Jittering**  
-   - Added small random offsets to reduce overlap in discrete or categorical data.  
-   - Helps reveal distributions that are otherwise hidden.
+Post Type – Image, Text, Video
 
-3. **Aggregation & Binning**  
-   - **Hexagonal binning:** Visualizes density of millions of points.  
-   - **Statistical aggregation:** Summarizes data by Platform and Post Type to show trends clearly.
+Likes – Total number of likes
 
-## Pre-Lab Questions (Short Answers)
-1. **Why is over-plotting common in big data visualization?**  
-   Large datasets contain millions of overlapping points, making individual points hard to distinguish.
+Shares – Total number of shares
 
-2. **How does data density affect perception?**  
-   High density hides patterns; low density may underrepresent important data.
+Comments – Total number of comments
 
-3. **What trade-offs exist between detail and clarity?**  
-   More detail increases clutter, while summarizing improves clarity but may hide fine information.
+Engagement Score – Overall engagement metric
 
-4. **How do AI datasets increase visualization complexity?**  
-   AI datasets are large and high-dimensional, making traditional visualization methods less effective.
+📈 Visualizations & Key Insights
+1️⃣ Average Engagement Score by Platform and Post Type
 
-5. **Why is over-plotting a serious analytical risk?**  
-   It can hide trends and outliers, leading to incorrect interpretations.
+(Bar Chart using ggplot2)
 
-## Post-Lab Questions (Short Answers)
-1. **Which technique provided the best clarity and why?**  
-   Hexagonal binning and aggregation, as they summarize millions of points into readable patterns.
+Compares average engagement across platforms and post types
 
-2. **How does over-plotting distort analytical conclusions?**  
-   It hides trends and anomalies, potentially leading to wrong conclusions.
+Instagram shows higher engagement for Image and Video posts
 
-3. **When should aggregation be preferred over raw plotting?**  
-   When datasets are too large for individual points to be interpreted clearly.
+Twitter performs better with Text posts
 
-4. **How do these techniques support scalable AI analytics?**  
-   They reduce visual complexity, enabling faster and more accurate pattern recognition.
+Facebook shows consistent but moderate engagement
 
-5. **Explain real-world consequences of ignoring over-plotting.**  
-   Important insights can be missed, leading to flawed decisions in areas like social media, finance, or healthcare.
+2️⃣ Density of Likes vs Shares
 
-## Dataset
-The analysis uses the dataset: `X7_social_media_interactions.csv`  
-- Columns include: `Likes`, `Comments`, `Shares`, `Post_Type`, `Platform`, `Engagement_Score`
+(Hex Bin Plot)
 
-## Usage
-1. Open the provided R script (`visual_clutter_reduction.R`) in RStudio.  
-2. Ensure the dataset CSV is in your working directory.  
-3. Run the script to generate:  
-   - Alpha-blended scatter plots  
-   - Jittered plots  
-   - Hexagonal bin plots  
-   - Aggregated bar charts  
+Displays density of likes and shares to identify engagement clusters
 
-All plots include **Name and Roll Number** as captions for submission.
+Higher likes generally correspond to higher shares
 
-## Notes
-- `ggplot2` and `dplyr` libraries are required.  
-- Sampling or aggregation is recommended for very large datasets to improve performance.  
-- This lab demonstrates practical techniques for reducing visual clutter in big data visualization.
+Hex binning helps reduce overplotting and improves clarity
 
----
-**Author:** Pavitha A | **Roll No:** 23BAD081  
+3️⃣ Engagement Score by Post Type
 
+(Jitter Plot)
+
+Shows variation in engagement scores for different post types
+
+Image posts tend to receive higher engagement
+
+Video posts show wider variation across platforms
+
+Jittering prevents overlapping of data points
+
+4️⃣ Likes vs Comments by Platform
+
+(Scatter Plot with Alpha Blending)
+
+Visualizes relationship between likes and comments
+
+Positive correlation observed across platforms
+
+Alpha blending highlights dense interaction regions
+
+🛠 Tools & Technologies Used
+
+Software: R Studio
+
+Programming Language: R
+
+Libraries Used:
+
+ggplot2 – Data visualization
+
+dplyr – Data manipulation
+
+tidyr – Data cleaning
+
+🎯 Conclusion
+
+Using R Studio and ggplot2, this project effectively visualizes and compares engagement metrics across social media platforms. The analysis provides valuable insights into content performance and can help in making data-driven decisions for social media strategies.
+
+👤 Author Details
+
+Name: Pavitha A
+Roll No: 23BAD081
