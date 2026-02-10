@@ -1,0 +1,99 @@
+# --------------------------------------------------
+> # Name    : Pavitha A
+> # Roll No : 23BAD081
+> # Experiment : Reducing Visual Clutter in Large-Scale Datasets
+> # Tool    : R (ggplot2, dplyr)
+> # --------------------------------------------------
+> 
+> # Load required libraries
+> library(ggplot2)
+> library(dplyr)
+> 
+> # --------------------------------------------------
+> # Dataset
+> # --------------------------------------------------
+> # Dataset already loaded in environment:
+> # X7_social_media_interactions
+> 
+> # Optional: check structure
+> str(X7_social_media_interactions)
+
+> # --------------------------------------------------
+> # 1. ALPHA BLENDING
+> # --------------------------------------------------
+> # Objective: Reduce overplotting by using transparency
+> 
+> ggplot(X7_social_media_interactions,
++        aes(Likes, Comments, color = Platform)) +
++     geom_point(alpha = 0.15) +
++     labs(
++         title = "Likes vs Comments by Platform (Alpha Blending)",
++         x = "Likes",
++         y = "Comments",
++         caption = "Name: Pavitha A | Roll No: 23BAD081"
++     ) +
++     theme_minimal()
+> 
+> # --------------------------------------------------
+> # 2. JITTERING TECHNIQUE
+> # --------------------------------------------------
+> # Objective: Reduce overlap for discrete/categorical data
+> 
+> ggplot(X7_social_media_interactions,
++        aes(Post_Type, Engagement_Score, color = Platform)) +
++     geom_jitter(
++         width = 0.25,
++         height = 0.4,
++         alpha = 0.4
++     ) +
++     labs(
++         title = "Engagement Score by Post Type (Jittering)",
++         x = "Post Type",
++         y = "Engagement Score",
++         caption = "Name: Pavitha A | Roll No: 23BAD081"
++     ) +
++     theme_minimal()
+> 
+> # --------------------------------------------------
+> # 3. AGGREGATION AND BINNING
+> # --------------------------------------------------
+> 
+> # A) HEXAGONAL BINNING
+> # Objective: Visualize density of millions of points
+> 
+> ggplot(X7_social_media_interactions,
++        aes(Likes, Shares)) +
++     geom_hex(bins = 30) +
++     scale_fill_viridis_c(trans = "log") +
++     labs(
++         title = "Density of Likes vs Shares (Hex Binning)",
++         x = "Likes",
++         y = "Shares",
++         fill = "Post Count",
++         caption = "Name: Pavitha A | Roll No: 23BAD081"
++     ) +
++     theme_minimal()
+> 
+> # --------------------------------------------------
+> # B) STATISTICAL AGGREGATION
+> # --------------------------------------------------
+> # Objective: Summarize engagement patterns
+> 
+> agg_data <- X7_social_media_interactions %>%
++     group_by(Platform, Post_Type) %>%
++     summarise(
++         Avg_Engagement = mean(Engagement_Score),
++         Total_Posts = n(),
++         .groups = "drop"
++     )
+> 
+> ggplot(agg_data,
++        aes(Post_Type, Avg_Engagement, fill = Platform)) +
++     geom_col(position = "dodge") +
++     labs(
++         title = "Average Engagement Score by Platform and Post Type",
++         x = "Post Type",
++         y = "Average Engagement Score",
++         caption = "Name: Pavitha A | Roll No: 23BAD081"
++     ) +
++     theme_minimal()
